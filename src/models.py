@@ -7,7 +7,6 @@ from eralchemy2 import render_er
 
 Base = declarative_base()
 
-follower = relationship('User', secondary='Follower', back_populates='User')
 
 class User(Base):
     __tablename__ = 'user'
@@ -27,7 +26,7 @@ class Favourites(Base):
 class Characters(Base):
     __tablename__ = 'characters'
     id = Column(Integer, primary_key=True)
-    characters_id = Column(Integer)
+    # characters_id = Column(Integer)
     name = Column(String)
     gender = Column(String)
     hair_color = Column(String)
@@ -38,7 +37,7 @@ class Characters(Base):
 class Planets(Base):
     __tablename__ = 'planets'
     id = Column(Integer, primary_key=True)
-    planets_id = Column(Integer)
+    #planets_id = Column(Integer)
     name = Column(String)
     climate = Column(String)
     gravity = Column(Integer)
@@ -49,7 +48,7 @@ class Planets(Base):
 class Vehicles(Base):
     __tablename__ = 'vehicles'
     id = Column(Integer, primary_key=True)
-    vehicles_id = Column(Integer)
+    #vehicles_id = Column(Integer)
     name = Column(String)
     model = Column(String)
     passengers = Column(Integer)
