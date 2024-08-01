@@ -14,20 +14,17 @@ class User(Base):
     email = Column(String(50), nullable=False)
     user_name = Column(String(20), nullable=False)
     password = Column(String(10), nullable=False)
+    favourites_id = Column(Integer, ForeignKey('favourites.id'))
    
     
 
 class Favourites(Base):
     __tablename__ = 'favourites'
     id = Column(Integer, primary_key=True)
-    characters_id = Column(Integer, ForeignKey('characters.id'))
-    planets_id = Column(Integer, ForeignKey('planets.id'))
-    vehicles_id = Column(Integer, ForeignKey('vehicles.id'))
-    user_id = Column(Integer, ForeignKey('user.id'))
-    characters = relationship("Characters")
-    planets = relationship("Planets")
-    vehicles = relationship("vehicles")
-    user = relationship("user")
+    characters = relationship("characters", backref="favourites")
+    planets = relationship("planets", backref="favourites")
+    vehicles = relationship("vehicles", backref="favourites")
+    user = relationship("user", backref="favourites")
     
 
 class Characters(Base):
@@ -37,6 +34,7 @@ class Characters(Base):
     gender = Column(String)
     hair_color = Column(String)
     eye_color = Column(String)
+    favourites_id = Column(Integer, ForeignKey('favourites.id'))
    
 
 class Planets(Base):
@@ -46,6 +44,7 @@ class Planets(Base):
     climate = Column(String)
     gravity = Column(Integer)
     population = Column(Integer)
+    favourites_id = Column(Integer, ForeignKey('favourites.id'))
     
     
 
@@ -56,6 +55,7 @@ class Vehicles(Base):
     model = Column(String)
     passengers = Column(Integer)
     speed = Column(Integer)
+    favourites_id = Column(Integer, ForeignKey('favourites.id'))
    
   
 
